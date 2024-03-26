@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import GlobalContext from './src/contexts/GlobalContext';
+import Navigation from './src/navigation/Navigation';
+import GlobalContextType from './src/types/GlobalContextType';
+import GlobalStateType from './src/types/GlobalStateType';
 
-export default function App() {
+const App = () => {
+  const [ modalOpen, setModalOpen ] = React.useState(false)
+  const [ spinnerActive, setSpinnerActive ] = React.useState(false)
+  const [ globalState, setGlobalState ] = React.useState<GlobalStateType>({
+    database: null
+  })
+
+  const globalContext: GlobalContextType = {
+    globalState,
+    setGlobalState,
+    spinnerActive,
+    setSpinnerActive,
+    modalOpen,
+    setModalOpen
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <>
+      <GlobalContext.Provider value={globalContext}>
+        <Navigation />
+      </GlobalContext.Provider>
+    </>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
