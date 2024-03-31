@@ -1,6 +1,6 @@
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { Pressable, Text, Button } from 'react-native'
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+// import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import type { RootStackScreenProps, RootStackNavigationProp } from '../../navigation/types'
 import styles from '../../constants/styles'
@@ -27,7 +27,10 @@ export default function FolderSettingsButton() {
         adjustsFontSizeToFit={true}
         /> */}
       <Text
-        style={{color: '#000'}}>
+        style={{
+          color: '#000',
+          fontSize: 24
+          }}>
           Lotono
       </Text>
     </Pressable>

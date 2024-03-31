@@ -1,6 +1,6 @@
 // app/models/Picture.ts
-import EnvVars from "../constants/EnvVars"
-import RNFetchBlob from 'react-native-blob-util'
+// import EnvVars from "../constants/EnvVars"
+// import RNFetchBlob from 'react-native-blob-util'
 
 export default class Picture {
   private _format: string
@@ -14,22 +14,22 @@ export default class Picture {
   }
 
   async destroy() {
-    const path = EnvVars.baseDir + this._source
-    let exists: boolean
+    // const path = EnvVars.baseDir + this._source
+    // let exists: boolean
 
-    exists = await RNFetchBlob.fs.exists(path)
+    // exists = await RNFetchBlob.fs.exists(path)
 
-    if (!exists) {
-      throw new Error(`Photo destruction failed, file ${path} does not exist.`)
-    }
+    // if (!exists) {
+    //   throw new Error(`Photo destruction failed, file ${path} does not exist.`)
+    // }
 
-    await RNFetchBlob.fs.unlink(path)
+    // await RNFetchBlob.fs.unlink(path)
 
-    exists = await RNFetchBlob.fs.exists(path)
+    // exists = await RNFetchBlob.fs.exists(path)
 
-    if (exists) {
-      throw new Error('Photo destruction failed, file still exists.')
-    }
+    // if (exists) {
+    //   throw new Error('Photo destruction failed, file still exists.')
+    // }
   }
 
   get source() {

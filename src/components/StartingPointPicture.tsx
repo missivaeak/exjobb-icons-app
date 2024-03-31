@@ -1,7 +1,7 @@
 import { Text } from "react-native"
-import EnvVars from "../constants/EnvVars"
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
-import styles from "../constants/styles"
+// import EnvVars from "../constants/EnvVars"
+// import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+// import styles from "../constants/styles"
 
 export default function StartingPointPicture(props: {source: string}) {
   return (
@@ -28,9 +28,9 @@ export default function StartingPointPicture(props: {source: string}) {
     //   />
     <Text
       style={{
-          fontSize: 100,
+          fontSize: 140,
           color: "#000",
-          lineHeight: 105,
+          lineHeight: 145,
           textAlign: 'center',
           marginBottom: -17
           

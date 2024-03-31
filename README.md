@@ -1,1 +1,3 @@
-# exjobb-icons-app
+# Sample app
+
+Text version

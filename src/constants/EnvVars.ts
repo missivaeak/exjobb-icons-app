@@ -1,8 +1,8 @@
-import RNFetchBlob from "react-native-blob-util"
+// import RNFetchBlob from "react-native-blob-util"
+import * as FileSystem from 'expo-file-system'
 import { Dimensions, Platform } from 'react-native'
-import StaticSafeAreaInsets from 'react-native-static-safe-area-insets'
 
-const dir = RNFetchBlob.fs.dirs.CacheDir
+const dir = FileSystem.documentDirectory
 
 // const path = Platform.select({
 //   ios: `${timestamp}.m4a`,
@@ -11,17 +11,18 @@ const dir = RNFetchBlob.fs.dirs.CacheDir
 
 const SAFE_BOTTOM =
   Platform.select({
-    ios: StaticSafeAreaInsets.safeAreaInsetsBottom,
+    ios: 50,
   }) ?? 0
 const CONTENT_SPACING = 15
 
 export default {
   bareBaseDir: dir + '/',
-  baseDir: 'file://' + dir + '/',
+  baseDir: dir,
+  // baseDir: 'file://' + dir + '/',
   safeAreaPadding: {
-    paddingLeft: StaticSafeAreaInsets.safeAreaInsetsLeft + CONTENT_SPACING,
-    paddingTop: StaticSafeAreaInsets.safeAreaInsetsTop + CONTENT_SPACING,
-    paddingRight: StaticSafeAreaInsets.safeAreaInsetsRight + CONTENT_SPACING,
+    paddingLeft: 0 + CONTENT_SPACING,
+    paddingTop: 56 + CONTENT_SPACING,
+    paddingRight: 0 + CONTENT_SPACING,
     paddingBottom: SAFE_BOTTOM + CONTENT_SPACING,
   },
   contentSpacing: CONTENT_SPACING,

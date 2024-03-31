@@ -1,7 +1,8 @@
 import { useCallback, useContext, useEffect  } from "react"
-import { View, Text, Image, StyleSheet, Pressable, Alert } from "react-native"
+import { View, Text, Image, StyleSheet, Pressable } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import prompt from 'react-native-prompt-android'
+// import prompt from 'react-native-prompt-android'
+// import { Alert } from "rn-custom-alert-prompt"
 
 import type { RootStackScreenProps } from "../../navigation/types"
 import type Picture from "../../classes/Picture"
@@ -22,18 +23,22 @@ function ConfirmButton(props: {
 
   const promptName = useCallback(async (alertTitle: string, alertMessage: string): Promise<string> => {
     return new Promise((resolve, reject) => {
-      prompt(
-        alertTitle,
-        alertMessage,
-        [
-          { text: "OK", style: 'default', onPress: (value) => {
-            return resolve(value)
-          }},
-        ],
-        {
-          cancelable: false,
-        }
-      );
+
+      console.log("eaoeoeoe22223")
+
+      // prompt(
+      //   alertTitle,
+      //   alertMessage,
+      //   [
+      //     { text: "OK", style: 'default', onPress: (value) => {
+      //       console.log("snark")
+      //       return resolve(value)
+      //     }},
+      //   ],
+      //   {
+      //     cancelable: false,
+      //   }
+      // );
     })
   }, [])
 
@@ -59,8 +64,11 @@ function ConfirmButton(props: {
       default:
         throw new Error('Cannot confirm picture, unknown target type: ' + props.targetType)
     }
+    
 
-    name = await promptName(alertTitle, alertMessage)
+    // name = await promptName(alertTitle, alertMessage)
+    // name = await Alert.prompt(alertTitle, alertMessage)
+    name = 'Scen'
 
     options = {
       type: props.targetType,

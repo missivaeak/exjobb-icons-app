@@ -1,10 +1,11 @@
 import React, { useCallback, useRef, RefObject, useContext } from 'react'
 import { StyleSheet, View, ViewProps, Text, Pressable } from 'react-native'
-import { Camera, type PhotoFile } from 'react-native-vision-camera'
+// import { Camera, type PhotoFile } from 'react-native-vision-camera'
 
 import GlobalContext from '../contexts/GlobalContext'
 import EnvVars from '../constants/EnvVars'
 import styles from '../constants/styles'
+import { useNavigation } from '@react-navigation/native'
 
 const borderWidth = EnvVars.captureButtonSize * 0.1
 
@@ -31,26 +32,27 @@ const componentStyles = StyleSheet.create({
 })
 
 export default function CaptureButton({
-  camera,
+  // camera,
   onPhotoCaptured
 }: {
-  camera: RefObject<Camera>
-  onPhotoCaptured: (photo: PhotoFile) => void
+  // camera: RefObject<Camera>
+  onPhotoCaptured: (navigation) => void
 }) {
   const { globalState, setGlobalState, setSpinnerActive} = useContext(GlobalContext)
+  const navigation = useNavigation()
 
-  const takePhoto = useCallback(async () => {
+  const takePhoto = useCallback(async (navigation) => {
     try {
-      if (camera.current == null) throw new Error('Camera ref is null!')
+      // if (camera.current == null) throw new Error('Camera ref is null!')
 
       setSpinnerActive(true)
       // console.log('Taking photo...')
 
-      const photo = await camera.current.takePhoto({
-        enableShutterSound: false
-      })
+      // const photo = await camera.current.takePhoto({
+      //   enableShutterSound: false
+      // })
 
-      onPhotoCaptured(photo)
+      onPhotoCaptured(navigation)
     } catch (e) {
       console.error('Failed to take photo!', e)
     }
@@ -59,7 +61,9 @@ export default function CaptureButton({
   return (
     <View style={componentStyles.flex}>
       <Pressable
-        onPress={takePhoto}
+        onPress={() => {
+          takePhoto(navigation)
+        }}
         style={({pressed}) => [
           styles.buttonLike,
           pressed ? styles.pressed : null

@@ -1,6 +1,6 @@
 
 import { Image, StyleProp, ImageStyle, StyleSheet, Pressable, Text } from "react-native";
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+// import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import Picture from "../../classes/Picture";
 import EnvVars from "../../constants/EnvVars";
@@ -54,7 +54,7 @@ const componentStyles = StyleSheet.create({
     position: 'absolute',
     bottom: 4,
     right: 4,
-    fontSize: 20,
+    fontSize: 30,
     color: '#fff',
     textShadowColor: '#000',
     textShadowRadius: 10,

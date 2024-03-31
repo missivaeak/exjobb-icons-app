@@ -9,7 +9,7 @@
 import React, { useState, useContext, useEffect, useCallback, useRef } from 'react'
 import { Text, View, Pressable, Image, StyleSheet, GestureResponderEvent, Alert } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
-import prompt from 'react-native-prompt-android'
+// import prompt from 'react-native-prompt-android'
 
 /** Types **/
 import type { RootStackScreenProps } from '../../navigation/types'
@@ -38,15 +38,18 @@ export default function EditScene(
   const coords = useRef<CoordinatesType>({x: 0, y: 0})
   // console.log(folder)
 
-  const saveSound = useCallback(async (sound: Sound) => {
+  const saveSound = useCallback(async () => {
     if (!globalState.database) { return }
+    // const sound = new Sound({})
 
     const shape = new Circle({ radius: 50 })
-    const region = await globalState.database.insertRegion(coords.current, shape, sound, scene)
+    const region = await globalState.database.insertRegion(coords.current, shape, scene)
     setModalOpen(false)
 
     globalState.database?.sync(route.params.scene)?.then((result) => {
-      setScene(Object.create(result))
+      if (result) {
+        setScene(Object.create(result))
+      }
     })
   }, [])
 
@@ -88,7 +91,9 @@ export default function EditScene(
   // main useeffect to update on navigation to screen
   useFocusEffect(useCallback(() => {
     globalState.database?.sync(route.params.scene)?.then((result) => {
-      setScene(Object.create(result))
+      if (result) {
+        setScene(Object.create(result))
+      }
     })
 
     return () => {

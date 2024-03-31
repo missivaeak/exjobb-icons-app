@@ -23,7 +23,9 @@ export default function Place({navigation, route}: RootStackScreenProps<'Place'>
 
   useFocusEffect(useCallback(() => {
     globalState.database?.sync(route.params.place)?.then((result) => {
-      setPlace(Object.create(result))
+      if (result) {
+        setPlace(Object.create(result))
+      }
     })
 
     navigation.setOptions({title: route.params.place.name})

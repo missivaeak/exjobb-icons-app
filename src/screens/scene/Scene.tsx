@@ -8,6 +8,8 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react'
 import { Text, View, Button, Image, Pressable, StyleSheet, ScrollView, GestureResponderEvent } from 'react-native'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
+// import * as Speech from 'expo-speech'
+import { Audio } from 'expo-av'
 
 /** Types **/
 import type Container from '../../classes/references/Container'
@@ -23,16 +25,37 @@ import Sound from '../../classes/references/Sound'
 /** Components **/
 import Shape from '../../components/Shape'
 import CoordinatesType from '../../types/CoordinatesType'
-import Player from '../../services/Player'
+// import Player from '../../services/Player'
 
 export default function SceneScreen({navigation, route}: RootStackScreenProps<'Scene'>) {
   const [ scene, setScene ] = useState<Scene>(route.params.scene)
   const [ regions, setRegions ] = useState<Array<Region>>([])
   const { globalState, setGlobalState } = useContext(GlobalContext)
+  const [sound, setSound] = useState<Audio.Sound>();
+
+  async function playSound() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync(require('../../assets/audio.mp3'))
+    setSound(sound);
+
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   useFocusEffect(useCallback(() => {
     globalState.database?.sync(route.params.scene)?.then((result) => {
-      setScene(Object.create(result))
+      if (result) {
+        setScene(Object.create(result))
+      }
     })
 
     navigation.setOptions({title: route.params.scene.name})
@@ -71,8 +94,10 @@ export default function SceneScreen({navigation, route}: RootStackScreenProps<'S
           y: normalisedClick.y - region.coords.y
         }
 
-        if (region.shape.checkClick(offsetCoords) && region.action instanceof Sound) {
-          return Player.play(region.action.source)
+        if (region.shape.checkClick(offsetCoords)) {
+          // return Player.play(region.action.source)
+          // return Speech.speak('sample audio')
+          return playSound()
         }
       }
     })
