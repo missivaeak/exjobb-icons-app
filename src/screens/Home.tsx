@@ -53,8 +53,7 @@ export default function Home({ navigation, route }: RootStackScreenProps<'Home'>
               {
                 alignItems: 'center'
               },
-              styles.buttonLike,
-              pressed ? styles.buttonLikePressed : null
+              pressed ? styles.pressed : null
             ]}
             >
 

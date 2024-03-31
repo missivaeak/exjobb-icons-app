@@ -1,5 +1,5 @@
 import { Pressable, Text } from 'react-native'
-// import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 // import type { RootStackScreenProps } from '../navigation/types'
 // import { HeaderBackButtonProps } from '@react-navigation/native-stack/lib/typescript/src/types'
@@ -8,39 +8,26 @@ import styles from '../constants/styles'
 
 export default function NavigateBack({onPress}: {onPress: () => void}) {
   return (
-    // <MaterialCommunityIcon
-    //   onPress={onPress}
-    //   style={{
-    //     fontSize: 40,
-    //     color: '#000',
-    //     textAlign: 'center',
-    //     textAlignVertical: 'center',
-    //     paddingRight: 5
-    //   }}
-    //   name='gamma'
-    //   />
+
     <Pressable
       onPress={onPress}
       style={({pressed}) => [
-        styles.buttonLike,
-        pressed ? styles.buttonLikePressed : null,
+        pressed ? styles.pressed : null,
         {
-          marginRight: 13
+          marginRight: 5
         }
       ]}
       >
-      <Text
+      <MaterialCommunityIcon
         style={{
-          // height: '100%',
-          // paddingRight: 10,
-          // textDecorationLine: 'underline',
-          // textAlignVertical: 'top'
+          fontSize: 40,
           color: '#000',
-          fontSize: 24
+          textAlign: 'center',
+          textAlignVertical: 'center',
+          paddingRight: 5
         }}
-        >
-        Hilm
-      </Text>
+        name='gamma'
+        />
     </Pressable>
   )
 }

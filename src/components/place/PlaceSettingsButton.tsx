@@ -1,6 +1,6 @@
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { Pressable, Text } from 'react-native'
-// import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import type { RootStackScreenProps, RootStackNavigationProp } from '../../navigation/types'
 
@@ -18,22 +18,14 @@ export default function FolderSettingsButton() {
         navigation.push('EditPlace', {place})
       }}
       style={({pressed}) => [
-        styles.buttonLike,
-        pressed ? styles.buttonLikePressed : null
+        pressed ? styles.pressed : null
       ]}
       >
-      {/* <MaterialCommunityIcon
+      <MaterialCommunityIcon
         name='sawtooth-wave'
         size={40}
         adjustsFontSizeToFit={true}
-        /> */}
-      <Text
-        style={{
-          color: '#000',
-          fontSize: 24
-          }}>
-          Lotono
-      </Text>
+        />
     </Pressable>
   )
 }

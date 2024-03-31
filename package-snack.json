@@ -2,7 +2,7 @@
   "dependencies": {
     "invariant": "*",
     "expo-asset": "~9.0.2",
-    "expo-speech": "~11.7.0",
+    "expo-av": "~13.10.5",
     "expo-file-system": "~16.0.8",
     "react-native-paper": "4.9.2",
     "react-native-screens": "~3.29.0",

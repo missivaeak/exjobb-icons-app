@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react"
 import { Pressable, StyleSheet, Text, View } from "react-native"
-// import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 // import * as Speech from 'expo-speech'
 import { Audio } from "expo-av"
 
@@ -16,17 +16,15 @@ function CustomButton({onPress, icon, style}: CustomButtonType<void>) {
   return (<>
     <Pressable
       style={({pressed}) => [
-        styles.buttonLike,
-        pressed ? styles.buttonLikePressed : null,
-        {margin: 5}
+        pressed ? styles.pressed : {},
+        styles.button
       ]}
       onPress={onPress}
       >
-      <Text
-        style={{fontSize: 30}}
-        >
-        {icon}
-      </Text>
+      <MaterialCommunityIcon
+        style={style}
+        name={icon}
+        />
     </Pressable>
   </>)
 }
@@ -140,7 +138,7 @@ export default function SoundRecorder(
         <CustomButton
           onPress={record}
           style={componentStyles.recordIcon}
-          icon='Sisoem'
+          icon='light-recessed'
           />
         : null }
 
@@ -148,7 +146,7 @@ export default function SoundRecorder(
         <CustomButton
           onPress={stop}
           style={componentStyles.stopIcon}
-          icon='Glinmere'
+          icon='tournament'
           />
         : null }
 
@@ -157,17 +155,17 @@ export default function SoundRecorder(
           <CustomButton
             onPress={play}
             style={componentStyles.playIcon}
-            icon='Mo'
+            icon='currency-sign'
             />
           <CustomButton
             onPress={record}
             style={componentStyles.recordIcon}
-            icon='Sisoem'
+            icon='light-recessed'
             />
           <CustomButton
             onPress={confirm}
             style={componentStyles.confirmIcon}
-            icon='Foinå'
+            icon='currency-bdt'
             />
         </>
         : null }

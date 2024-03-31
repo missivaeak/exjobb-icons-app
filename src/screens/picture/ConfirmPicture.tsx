@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, Pressable } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 // import prompt from 'react-native-prompt-android'
 // import { Alert } from "rn-custom-alert-prompt"
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import type { RootStackScreenProps } from "../../navigation/types"
 import type Picture from "../../classes/Picture"
@@ -101,21 +102,15 @@ function ConfirmButton(props: {
       >
       <Pressable
         style={({pressed}) => [
-          styles.buttonLike,
           pressed ? styles.pressed : null
         ]}
         onPress={confirm}
         >
-        <Text
-          style={{fontSize: 30}}
-          >
-            Foinå
-        </Text>
-        {/* <MaterialCommunityIcon
-          color='#00880099'
-          name='check-circle-outline'
+        <MaterialCommunityIcon
+          color='#000000'
+          name='currency-bdt'
           size={EnvVars.captureButtonSize}
-          /> */}
+          />
       </Pressable>
     </View>
   )

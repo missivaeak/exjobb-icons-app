@@ -7,6 +7,7 @@ import {
 } from "react"
 import { View, StyleSheet, Text, Image, Pressable } from "react-native"
 import { Asset } from 'expo-asset'
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import useIsForeground from "../../hooks/useIsForeground"
 import EnvVars from "../../constants/EnvVars"
@@ -49,15 +50,13 @@ function CaptureButton({
           takePhoto(navigation)
         }}
         style={({pressed}) => [
-          styles.buttonLike,
           pressed ? styles.pressed : null
         ]}
         >
-        <Text
-          style={{fontSize: 30}}
-          >
-          Blyll
-        </Text>
+         <MaterialCommunityIcon
+          style={componentStyles.cameraIcon}
+          name='currency-rial'
+          />
         {/* {({pressed}) => (
           <View style={pressed ? componentStyles.pressedButton : componentStyles.button} />
         )} */}
@@ -202,6 +201,10 @@ const componentStyles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
     bottom: EnvVars.safeAreaPadding.paddingBottom,
+  },
+  cameraIcon: {
+    color: '#fff',
+    fontSize: 80
   },
   // button: {
   //   marginBottom: EnvVars.contentSpacing,

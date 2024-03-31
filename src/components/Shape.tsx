@@ -1,8 +1,8 @@
-import { GestureResponderEvent, StyleSheet, View, ViewStyle, Pressable, StyleProp, useWindowDimensions, Text } from "react-native";
-// import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { GestureResponderEvent, StyleSheet, View, ViewStyle, Pressable, StyleProp, useWindowDimensions } from "react-native";
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import Region from "../classes/references/Region"
-// import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import styles from "../constants/styles";
 
 function DeleteOverlay({
@@ -24,7 +24,7 @@ function DeleteOverlay({
     const pageX = region.coords.x + region.shape.properties.radius
     const diffX = pageX - width
     const pageY = region.coords.y - region.shape.properties.radius
-
+    console.log('pageY', pageY)
     if (diffX > 0) {
       computedStyles = {
         deleteOverlay: {
@@ -45,34 +45,17 @@ function DeleteOverlay({
   }
 
   return (
-    <Pressable
-      style={({pressed}) => [
-        componentStyles.deleteOverlay,
-        computedStyles.deleteOverlay,
-        styles.buttonLike,
-        pressed ? styles.buttonLikePressed : null
-      ]}
+    <MaterialCommunityIcon
       onPress={callback ? () => {
         callback(region)
-      } : undefined}
-      >
-      <Text
-        style={{fontSize: 18}}
-        >
-        Maer
-      </Text>
-    </Pressable>
-    // <MaterialCommunityIcon
-    //   onPress={callback ? () => {
-    //     callback(region)
-    //   }: undefined}
-    //   name='hexagon-multiple-outline'
-    //   style={[
-    //     componentStyles.deleteOverlay,
-    //     computedStyles.deleteOverlay,
-    //     {paddingLeft: 2}
-    //   ]}
-    //   />
+      }: undefined}
+      name='hexagon-multiple-outline'
+      style={[
+        componentStyles.deleteOverlay,
+        computedStyles.deleteOverlay,
+        {paddingLeft: 2}
+      ]}
+      />
   )
 }
 
@@ -111,7 +94,7 @@ export default function Shape({
       style={({pressed}) => [
         componentStyles.shape,
         computedStyles.shape,
-        pressed && callback ? componentStyles.pressed : null
+        pressed && callback ? styles.pressed : null
       ]}
       >
       {deleteOverlay ? <DeleteOverlay
@@ -134,16 +117,16 @@ const componentStyles = StyleSheet.create({
   },
   deleteOverlay: {
     position: 'absolute',
-    // height: 50,
-    // width: 50,
-    // borderRadius: 25,
-    // fontSize: 40,
-    // color: '#a0f',
-    // backgroundColor: '#fff',
-    // textAlign: 'center',
-    // textAlignVertical: 'center',
-    // borderColor: '#000',
-    // borderWidth: 1
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    fontSize: 40,
+    color: '#000',
+    backgroundColor: '#fff',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    borderColor: '#000',
+    borderWidth: 1
     // textShadowColor: '#fff',
     // textShadowRadius: 10,
     // textShadowOffset: {
